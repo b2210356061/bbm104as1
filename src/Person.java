@@ -14,22 +14,22 @@ public class Person extends Entity {
     }
 
     private int getDailyCalorieNeeds() {
-        if (gender == "male") {
-            return (int) Math.round(66 + (13.75 * weight) + (5 * height) - (6.8 * age));
+        if (gender.equals("male")) {
+            return (int) Math.round(66.0 + (13.75 * weight) + (5 * height) - (6.8 * age));
         }
         // female
-        return (int) Math.round(665 + (9.6 * weight) + (1.7 * height) - (4.7 * age));
+        return (int) Math.round(665.0 + (9.6 * weight) + (1.7 * height) - (4.7 * age));
     }
 
     private String getResult() {
-        int result = caloriesTaken - caloriesBurned - getDailyCalorieNeeds();
+        int result = -getDailyCalorieNeeds() + caloriesTaken - caloriesBurned;
         if (result >= 0) return "+" + result;
         return Integer.toString(result);
     }
 
     public String getStatus() {
-        return name + "\t" + age + "\t" + getDailyCalorieNeeds() + "\t" + caloriesTaken + "\t"
-                + caloriesBurned + "\t" + getResult();
+        return name + "\t" + age + "\t" + getDailyCalorieNeeds() + "kcal\t" + caloriesTaken
+                + "kcal\t" + caloriesBurned + "kcal\t" + getResult() + "kcal";
     }
 
     public static int calculateGain(CalorieChanger food, int portions) {
@@ -50,10 +50,13 @@ public class Person extends Entity {
 
     public static Person parse(String line) {
         String[] args = line.trim().split("\t");
-        Person person = new Person(Integer.parseInt(args[0]), args[1], args[2],
-                Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5])
+        int id = Integer.parseInt(args[0]);
+        String name = args[1];
+        String gender = args[2];
+        int weight = Integer.parseInt(args[3]);
+        int height = Integer.parseInt(args[4]);
+        int birth = Integer.parseInt(args[5]);
 
-        );
-        return person;
+        return new Person(id, name, gender, weight, height, birth);
     }
 }

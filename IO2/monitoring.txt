@@ -20,13 +20,13 @@ mehmet	37	1721kcal	236kcal	0kcal	-1485kcal
 ***************
 12239	has	taken	64kcal	from	nektarin
 ***************
-there is no such person
+there	is	no	such	person
 ***************
 11234	has	taken	850kcal	from	hindisis
 ***************
-murat	35	1776kcal	1225kcal	102kcal	+197kcal
+murat	35	1776kcal	2075kcal	102kcal	+197kcal
 ***************
-murat	35	1776kcal	1225kcal	102kcal	+197kcal
+murat	35	1776kcal	2075kcal	102kcal	+197kcal
 ayse	36	1374kcal	1446kcal	476kcal	-404kcal
 mehmet	37	1721kcal	236kcal	0kcal	-1485kcal
 semih	21	1538kcal	64kcal	0kcal	-1474kcal

@@ -6,8 +6,9 @@ public class HealthTracker {
     private String pathCommand;
 
     // These hashmaps are in the format of <id>: <the object with that id>
-    private HashMap<Integer, Person> people;
-    private HashMap<Integer, CalorieChanger> calorieChangers;
+    private HashMap<Integer, Person> people = new HashMap<Integer, Person>();
+    private HashMap<Integer, CalorieChanger> calorieChangers =
+            new HashMap<Integer, CalorieChanger>();
     private ArrayList<Integer> orderOfPrinting = new ArrayList<Integer>();
 
     public HealthTracker(String pathCommand) {
@@ -23,7 +24,8 @@ public class HealthTracker {
                 list.add(line);
             }
         } catch (Exception e) {
-            System.out.println("An error occurred while reading from" + path + "\n" + e.toString());
+            System.out.println(
+                    "An error occurred while reading from " + path + "\n" + e.toString());
         }
         return list.stream();
     }
@@ -36,14 +38,14 @@ public class HealthTracker {
     }
 
     public void readFoods() {
-        genericReader("foods.txt").forEach(line -> {
+        genericReader("food.txt").forEach(line -> {
             CalorieChanger food = CalorieChanger.parse(line);
             calorieChangers.put(food.getId(), food);
         });
     }
 
     public void readSports() {
-        genericReader("sports.txt").forEach(line -> {
+        genericReader("sport.txt").forEach(line -> {
             CalorieChanger sport = CalorieChanger.parse(line);
             calorieChangers.put(sport.getId(), sport);
         });
@@ -79,13 +81,13 @@ public class HealthTracker {
             int calories = Person.calculateGain(activity, coefficient);
             person.eat(calories);
 
-            Logger.log(personId + "\thas\ttaken\t" + calories + "\tkcal\tfrom\t" + activity.name);
+            Logger.log(personId + "\thas\ttaken\t" + calories + "kcal\tfrom\t" + activity.name);
         } else { // sport ids start with 2
             int calories = Person.calculateLoss(activity, coefficient);
             person.exercise(calories);
 
-            Logger.log(personId + "\thas\tburned\t" + calories + "\tkcal\tthanks\tto\t"
-                    + activity.name);
+            Logger.log(
+                    personId + "\thas\tburned\t" + calories + "kcal\tthanks\tto\t" + activity.name);
         }
     }
 
