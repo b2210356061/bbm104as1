@@ -64,7 +64,19 @@ public class HealthTracker {
         }
     }
 
-    private void printWarn() {}
+    private void printWarn() {
+        boolean hasWarnedAnyone = false;
+        for (int id : orderOfPrinting) {
+            Person person = people.get(id);
+            if (Integer.parseInt(person.getNetCalories()) > 0) {
+                hasWarnedAnyone = true;
+                Logger.log(person.getStatus());
+            }
+        }
+        if (!hasWarnedAnyone) {
+            Logger.log("there\tis\tno\tsuch\tperson");
+        }
+    }
 
     private void eatOrExercise(String cmd) {
         String[] args = cmd.split("\t");

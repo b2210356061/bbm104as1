@@ -21,7 +21,7 @@ public class Person extends Entity {
         return (int) Math.round(665.0 + (9.6 * weight) + (1.7 * height) - (4.7 * age));
     }
 
-    private String getResult() {
+    public String getNetCalories() {
         int result = -getDailyCalorieNeeds() + caloriesTaken - caloriesBurned;
         if (result >= 0) return "+" + result;
         return Integer.toString(result);
@@ -29,7 +29,7 @@ public class Person extends Entity {
 
     public String getStatus() {
         return name + "\t" + age + "\t" + getDailyCalorieNeeds() + "kcal\t" + caloriesTaken
-                + "kcal\t" + caloriesBurned + "kcal\t" + getResult() + "kcal";
+                + "kcal\t" + caloriesBurned + "kcal\t" + getNetCalories() + "kcal";
     }
 
     public static int calculateGain(CalorieChanger food, int portions) {
