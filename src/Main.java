@@ -1,10 +1,14 @@
 import java.io.*;
-import java.util.*;
 
 class Main {
     public static void main(String[] args) {
-        String pathCommand = args[0], pathFood = "food.txt", pathPeople = "people.txt",
-               pathSport = "sport.txt";
-        
+        // Deletes monitoring.txt if exists
+        new File("monitoring.txt").delete();
+
+        HealthTracker healthTracker = new HealthTracker(args[0]);
+        healthTracker.readPeople();
+        healthTracker.readFoods();
+        healthTracker.readSports();
+        healthTracker.executeCommands();
     }
 }
