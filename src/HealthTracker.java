@@ -93,13 +93,14 @@ public class HealthTracker {
             int calories = Person.calculateGain(activity, coefficient);
             person.eat(calories);
 
-            Logger.log(personId + "\thas\ttaken\t" + calories + "kcal\tfrom\t" + activity.name);
+            Logger.log(
+                    personId + "\thas\ttaken\t" + calories + "kcal\tfrom\t" + activity.getName());
         } else { // sport ids start with 2
             int calories = Person.calculateLoss(activity, coefficient);
             person.exercise(calories);
 
-            Logger.log(
-                    personId + "\thas\tburned\t" + calories + "kcal\tthanks\tto\t" + activity.name);
+            Logger.log(personId + "\thas\tburned\t" + calories + "kcal\tthanks\tto\t"
+                    + activity.getName());
         }
     }
 

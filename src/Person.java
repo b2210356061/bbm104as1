@@ -1,8 +1,8 @@
 import java.time.Year;
 
-public class Person extends Entity {
-    private int weight, height, age, caloriesTaken, caloriesBurned;
-    private String gender;
+public class Person {
+    private int id, weight, height, age, caloriesTaken, caloriesBurned;
+    private String name, gender;
 
     private Person(int id, String name, String gender, int weight, int height, int birth) {
         this.id = id;
@@ -21,6 +21,10 @@ public class Person extends Entity {
         return (int) Math.round(665.0 + (9.6 * weight) + (1.7 * height) - (4.7 * age));
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getNetCalories() {
         int result = -getDailyCalorieNeeds() + caloriesTaken - caloriesBurned;
         if (result >= 0) return "+" + result;
@@ -33,7 +37,7 @@ public class Person extends Entity {
     }
 
     public static int calculateGain(CalorieChanger food, int portions) {
-        return food.calories * portions;
+        return food.getCalories() * portions;
     }
 
     public void eat(int calories) {
@@ -41,7 +45,7 @@ public class Person extends Entity {
     }
 
     public static int calculateLoss(CalorieChanger sport, int duration) {
-        return (int) Math.round((double) sport.calories * ((double) duration / 60.0));
+        return (int) Math.round((double) sport.getCalories() * ((double) duration / 60.0));
     }
 
     public void exercise(int calories) {
